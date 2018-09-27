@@ -27,18 +27,18 @@
     data: "1"
     type: dword
 
-- name: Account Logon Audit Log | windows-audit-203
-  win_command: AuditPol /Set /Category:\"Account Logon\" /Failure:Enable /Success:Enable
-  register: accountLogonAudit
-  args:
-    creates: C:\accountLogonAudit.lock
+# - name: Account Logon Audit Log | windows-audit-203
+#   win_command: AuditPol /Set /Category:\"Account Logon\" /Failure:Enable /Success:Enable
+#   register: accountLogonAudit
+#   args:
+#     creates: C:\accountLogonAudit.lock
 
-- name: Create accountLogonAudit.lock if account audit log was activated
-  win_copy:
-    dest: C:\accountLogonAudit.lock
-    content: ""
-    force: no
-  when: accountLogonAudit
+# - name: Create accountLogonAudit.lock if account audit log was activated
+#   win_copy:
+#     dest: C:\accountLogonAudit.lock
+#     content: ""
+#     force: no
+#   when: accountLogonAudit
 
 - name: Audit Application Group Management | windows-audit-204
   win_command: AuditPol /Set /SubCategory:\"Application Group Management\" /Failure:Enable /Success:Enable
